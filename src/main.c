@@ -2,31 +2,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char *ft_find_path(char *path, char **argv, size_t len) {
-
-  while (ft_strncmp(path, *argv, len))
-    argv++;
-  return (*argv + len);
-}
-
 static void ft_path(int argc, char **argv, t_dd **root) {
 
-  if (!(*root))
-    (*root) = (t_dd *)malloc(sizeof(t_dd));
+  int i;
 
-  while (argc) {
-    (*root)->if_path = ft_strdup(ft_find_path("if=", argv, 3));
-    (*root)->of_path = ft_strdup(ft_find_path("of=", argv, 3));
-    argc--;
+  if (!(*root)) {
+    (*root) = (t_dd *)malloc(sizeof(t_dd));
   }
+
+  i = 0;
+  while (i < argc) {
+    if ((ft_strncmp("if=", *argv, 3)) == 0)
+      (*root)->if_path = ft_strdup(*argv + 3);
+    else if ((ft_strncmp("of=", *argv, 3)) == 0)
+      (*root)->of_path = ft_strdup(*argv + 3);
+    else if ((ft_strncmp("count=", *argv, 6)) == 0)
+      (*root)->byte.count = ft_atoi(*argv + 6);
+    else if ((ft_strncmp("bs=", *argv, 3)) == 0)
+      (*root)->byte.bs = ft_atoi(*argv + 3);
+    i++;
+    argv++;
+  }
+  if (((*root)->byte.bs) == 0)
+    (*root)->byte.bs = 512;
 }
 
 int main(int argc, char *argv[]) {
   t_dd *root;
 
   root = NULL;
+  // gelen arugumanlari bir struct yapisi icerisine atiyorum
   ft_path(argc, argv, &root);
-  ft_check_argv(root);
+  // gelen argumanlarin eksikligini ve dogrulugunu burada kontrol ediyorum
+  // ft_check_argv(root);
   printf("%s\n", root->if_path);
   printf("%s\n", root->of_path);
+  printf("%d\n", root->byte.bs);
+  printf("%d\n", root->byte.count);
 }
