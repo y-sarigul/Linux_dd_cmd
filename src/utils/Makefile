@@ -12,7 +12,7 @@
 
 OBJDIR	:= ../../obj
 CFLAGS	:= -I ../../inc -c
-FILES	:= 
+FILES	:= ft_check_argv.c\
 
 OBJ		:= $(FILES:%.c=$(OBJDIR)/%.o)
 

@@ -19,6 +19,7 @@ static void ft_path(int argc, char **argv, t_dd **root) {
     (*root)->of_path = ft_strdup(ft_find_path("of=", argv, 3));
     argc--;
   }
+  ft_check_argv((*root));
 }
 
 int main(int argc, char *argv[]) {
@@ -26,4 +27,6 @@ int main(int argc, char *argv[]) {
 
   root = NULL;
   ft_path(argc, argv, &root);
+  printf("%s\n", root->if_path);
+  printf("%s\n", root->of_path);
 }

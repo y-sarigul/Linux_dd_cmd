@@ -18,7 +18,7 @@ UTILS 			:= $(OBJEDIR)/utils.a
 CC					:= cc
 CFLAGS			:= -Wall -Wextra -Werror -I ./inc
 
-$(NAME): $(OBJDIR) $(LIBFT)
+$(NAME): $(OBJDIR) $(LIBFT) $(UTILS)
 	@ar -rcs $(NAME) $(OBJDIR)/*.o 
 
 $(OBJDIR):
@@ -29,9 +29,9 @@ $(LIBFT):
 	@echo "Libft creating"
 	@make -C ./lib/libft
 
-# $(UTILS):
-# 	@echo "Utils creating"
-# 	@make -C src/utils 
+$(UTILS):
+	@echo "Utils creating"
+	@make -C src/utils 
 
 all: $(NAME)
 
@@ -41,13 +41,12 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(OBJDIR)
-	@rm dd.a
 
 re: fclean all
 
 m:
 	@gcc ./src/main.c dd.a -o main -I ../inc 
-	@./main if=test.txt of=test2.txt
+	@./main if=test.txt of=deneme.txt
 	@rm main
 
 .PHONY: all re clean fclean m
