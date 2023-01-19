@@ -1,6 +1,4 @@
 #include "../inc/dd.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static void ft_path(const int argc, char *const *argv, t_dd **root) {
 
@@ -27,7 +25,6 @@ static void ft_path(const int argc, char *const *argv, t_dd **root) {
     (*root)->byte.bs = 512;
   if (((*root)->byte.count) == 0)
     (*root)->byte.count = 1;
-  (*root)->byte.bs = (((*root)->byte.bs) * ((*root)->byte.count));
 }
 
 int main(int argc, char *argv[]) {
@@ -39,6 +36,7 @@ int main(int argc, char *argv[]) {
   // gelen argumanlarin eksikligini ve dogrulugunu burada kontrol ediyorum
   ft_check_argv(root);
   // dosyalari tanimliyorum
-  ft_file_descriptor(root);
+  ft_file_descriptor(&root);
+  // en son yazma islemini yapiyorum
   ft_read_and_write(root);
 }

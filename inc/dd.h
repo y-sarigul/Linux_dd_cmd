@@ -27,7 +27,7 @@ typedef struct s_dd {
 // *******UTILS*******
 void ft_check_argv(const t_dd *root);
 void ft_exit_sys(const char *msg);
-void ft_file_descriptor(t_dd *root);
+void ft_file_descriptor(t_dd **root);
 void ft_read_and_write(const t_dd *root);
 
 #endif // !DD_H
