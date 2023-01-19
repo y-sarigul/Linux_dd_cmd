@@ -14,7 +14,8 @@ OBJDIR	:= ../../obj
 CFLAGS	:= -I ../../inc -c
 FILES	:= ft_check_argv.c\
 				 ft_exit_sys.c\
-				 ft_read_and_write.c\
+				 ft_file_descriptor.c\
+				 ft_read_and_write.c
 
 OBJ		:= $(FILES:%.c=$(OBJDIR)/%.o)
 
